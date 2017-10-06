@@ -1,29 +1,39 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const words = ["dog", "cat", "mouse", "cheese"];
+const hangman = "HANGMAN"
 let correctWord = '';
 let guessedLetters = "";
-let remainingCountOfPlayerGuesses = 15;
+let remainingCountOfPlayerGuesses = 7;
+let incorrectGuesses = 0;
 let numberWins = 0;
 let numberLosses = 0;
-let obfuscatedWord = 'word';
+let obfuscatedWord = '';
 commitWord();
+updateDOM();
 
 function commitWord() {
   // figures out the word to guess
   let randomNumber = Math.floor(Math.random() * words.length);
   correctWord = words[randomNumber];
-  document.getElementById("current-word").innerHTML = obfuscatedWord
   console.log(correctWord);
   return correctWord;
 }
 
+function obfuscateWord(word) {
+  obfuscatedWord = '';
+  for (var i = 0; i < word.length; i++) {
+    obfuscatedWord += '_';
+  }
+  return obfuscatedWord;
+}
+
 function updateDOM() {
   // updates the DOM as the game progresses
+  document.getElementById("guesses-remaining").innerHTML = incorrectGuesses;
   document.getElementById("number-wins").innerHTML = numberWins;
   document.getElementById("number-losses").innerHTML = numberLosses;
-  document.getElementById("guesses-remaining").innerHTML = remainingCountOfPlayerGuesses;
   document.getElementById("guessed-letters").innerHTML = guessedLetters;
-  document.getElementById("current-word").innerHTML = obfuscatedWord;
+  document.getElementById("current-word").innerHTML = obfuscatedWord.split("").join(" ");
 }
 
 document.onkeypress = function(key) {
@@ -31,6 +41,8 @@ document.onkeypress = function(key) {
   guessedLetters += key.key;
   processGuess();
   updateDOM();
+  // endGame();
+  setTimeout(endGame,100)
 }
 
 function processGuess() {
@@ -44,25 +56,27 @@ function processGuess() {
         obfuscatedWord += "_";
     }
   }
-  endGame()
 }
 
 function resetGame() {
   // resets the game after a win or loss
   guessedLetters = '';
   obfuscatedWord = '';
-  remainingCountOfPlayerGuesses = 15;
+  incorrectGuesses = 0;
   commitWord();
+  updateDOM();
 }
 
 function endGame() {
   if (!obfuscatedWord.includes("_")) {
+    alert("You win!  The word is " + obfuscatedWord + ".");
     numberWins++;
     resetGame();
-  } else if (obfuscatedWord.includes("_") && remainingCountOfPlayerGuesses != 0) {
-    remainingCountOfPlayerGuesses--;
-  } else if (obfuscatedWord.includes("_") && remainingCountOfPlayerGuesses == 0) {
+  } else if (obfuscatedWord.includes("_") && incorrectGuesses == 7) {
+    alert("You lose!  The word is " + correctWord + ".");
     numberLosses++;
     resetGame();
+  } else if (obfuscatedWord.includes("_") && incorrectGuesses != 7) {
+    incorrectGuesses++;
   }
 }

@@ -29,7 +29,6 @@ function updateDOM() {
 document.onkeypress = function(key) {
   // tracks keys and letters selected by the user
   guessedLetters += key.key;
-  remainingCountOfPlayerGuesses -= 1;
   processGuess();
   updateDOM();
 }

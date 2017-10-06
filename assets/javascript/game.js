@@ -45,10 +45,14 @@ function updateDOM() {
 document.onkeypress = function(key) {
   // tracks keys and letters selected by the user
   let keypress = key.key.toLowerCase();
-  guessedLetters += keypress;
-  processGuess(keypress);
-  updateDOM();
-  setTimeout(endGame,100)
+  if (guessedLetters.includes(keypress)) {
+    alert(`You already picked ${keypress}.  Pick another letter.`)
+  } else {
+    guessedLetters += keypress;
+    processGuess(keypress);
+    updateDOM();
+    setTimeout(endGame,100)
+  }
 }
 
 function processGuess(letter) {
@@ -59,7 +63,7 @@ function processGuess(letter) {
   if (!correctWord.includes(letter)) {
     incorrectGuesses++;
   }
-  
+
   obfuscatedWord = '';
   for (i = 0; i < correctWord.length; i++) {
     if (guessedLetters.includes(correctWord[i])) {

@@ -3,24 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>Hangman game</title>
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   </head>
   <body>
     <h1>Hangman!</h1>
-    <p>
-      Press a letter to begin
-    </p>
+    <h2>Rules</h2>
+    <ul>
+      <li>
+        Press a letter to begin
+      </li>
+      <li>
+        Guess all of the letters in the word.  If you're right, you'll see the letter appear in the word.  If you're wrong, the word HANGMAN will advance.
+      </li>
+      <li>
+        When you see the word HANGMAN spelled completely, you get 1 more guess or you lose!
+      </li>
+    </ul>
     <p>
       Wins: <span id="number-wins">0</span>
     </p>
     <p>
-      Current word: <span id="current-word">_ _ _ _ _ _</span>
+      Losses: <span id="number-losses">0</span>
     </p>
     <p>
-      Number of guesses remaining: <span id="guesses-remaining">15</span>
+      Current word: <span id="current-word">guessTBD</span>
     </p>
     <p>
-      Letters already guessed: <span id="guessed-letters">ABCDE...</span>
+      Incorrect Guesses: <span id="guesses-remaining">15</span><br />
+      <span id="hangman"></span>
     </p>
+    <p>
+      Letters already guessed: <span id="guessed-letters">No guesses yet</span>
+    </p>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
   </body>
 </html>

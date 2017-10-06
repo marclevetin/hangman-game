@@ -5,8 +5,8 @@ let guessedLetters = "";
 let remainingCountOfPlayerGuesses = 15;
 let numberWins = 0;
 let numberLosses = 0;
-let obfuscatedWord = 'word'
-commitWord()
+let obfuscatedWord = 'word';
+commitWord();
 
 function commitWord() {
   // figures out the word to guess
@@ -30,20 +30,22 @@ document.onkeypress = function(key) {
   // tracks keys and letters selected by the user
   guessedLetters += key.key;
   remainingCountOfPlayerGuesses -= 1;
-  processGuess()
-  updateDOM()
+  processGuess();
+  updateDOM();
 }
 
 function processGuess() {
-  // this can probably be improved to only check the 1 letter that's been pressed.
+  // this cycles through the whole word in case there are duplicate letters
+  // look for ways to refactor and process only the new letter later.
   obfuscatedWord = '';
   for (i = 0; i < correctWord.length; i++) {
     if (guessedLetters.includes(correctWord[i])) {
-        obfuscatedWord += correctWord[i]
+        obfuscatedWord += correctWord[i];
     } else {
-        obfuscatedWord += "_"
+        obfuscatedWord += "_";
     }
   }
+  endGame()
 }
 
 function resetGame() {
@@ -52,4 +54,16 @@ function resetGame() {
   obfuscatedWord = '';
   remainingCountOfPlayerGuesses = 15;
   commitWord();
+}
+
+function endGame() {
+  if (!obfuscatedWord.includes("_")) {
+    numberWins++;
+    resetGame();
+  } else if (obfuscatedWord.includes("_") && remainingCountOfPlayerGuesses != 0) {
+    remainingCountOfPlayerGuesses--;
+  } else if (obfuscatedWord.includes("_") && remainingCountOfPlayerGuesses == 0) {
+    numberLosses++;
+    resetGame();
+  }
 }

@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Hangman game</title>
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   </head>
   <body>
     <h1>Hangman!</h1>
@@ -13,14 +15,18 @@
       Wins: <span id="number-wins">0</span>
     </p>
     <p>
+      Losses: <span id="number-losses">0</span>
+    </p>
+    <p>
       Current word: <span id="current-word">_ _ _ _ _ _</span>
     </p>
     <p>
       Number of guesses remaining: <span id="guesses-remaining">15</span>
     </p>
     <p>
-      Letters already guessed: <span id="guessed-letters">ABCDE...</span>
+      Letters already guessed: <span id="guessed-letters">No guesses yet</span>
     </p>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
   </body>
 </html>

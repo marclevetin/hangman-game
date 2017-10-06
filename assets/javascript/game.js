@@ -1,6 +1,9 @@
+// values that are used throughout
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const words = ["dog", "cat", "mouse", "cheese"];
 const hangman = "HANGMAN"
+
+// set initial variables
 let correctWord = '';
 let guessedLetters = "";
 let remainingCountOfPlayerGuesses = 8;
@@ -8,8 +11,9 @@ let incorrectGuesses = 0;
 let numberWins = 0;
 let numberLosses = 0;
 let obfuscatedWord = '';
-commitWord();
-updateDOM();
+
+//start the game
+resetGame()
 
 function commitWord() {
   // figures out the word to guess
@@ -20,6 +24,7 @@ function commitWord() {
 }
 
 function obfuscateWord(word) {
+  // this hides unguessed letters in the correct word
   obfuscatedWord = '';
   for (var i = 0; i < word.length; i++) {
     obfuscatedWord += '_';
@@ -43,14 +48,18 @@ document.onkeypress = function(key) {
   guessedLetters += keypress;
   processGuess(keypress);
   updateDOM();
-  // endGame();
   setTimeout(endGame,100)
 }
 
 function processGuess(letter) {
   // this creates the word to be displayed.
   // it cycles through the whole word in case there are duplicate letters
-  // look for ways to refactor and process only the new letter later.
+
+  // this increments the Hangman word to show a user how close they are to losing
+  if (!correctWord.includes(letter)) {
+    incorrectGuesses++;
+  }
+  
   obfuscatedWord = '';
   for (i = 0; i < correctWord.length; i++) {
     if (guessedLetters.includes(correctWord[i])) {
@@ -60,10 +69,6 @@ function processGuess(letter) {
     }
   }
 
-  // this increments the Hangman word to show a user how close they are to losing
-  if (!correctWord.includes(letter)) {
-    incorrectGuesses++;
-  }
 }
 
 function resetGame() {
@@ -72,10 +77,12 @@ function resetGame() {
   obfuscatedWord = '';
   incorrectGuesses = 0;
   commitWord();
+  obfuscateWord(correctWord);
   updateDOM();
 }
 
 function endGame() {
+  // logic to determine if someone has won or if the game continues
   if (!obfuscatedWord.includes("_")) {
     alert("You win!  The word is " + obfuscatedWord + ".");
     numberWins++;

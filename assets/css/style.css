@@ -1,0 +1,48 @@
+body {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #A43C0F;
+  text-align: center;
+}
+
+#center {
+  background-color: #E87F10;
+  height: 75%;
+  min-height: 30rem;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+#rules {
+  background-color: #631203;
+  margin: 1em;
+  padding: 0em 0.5em 0.5em 0.5em;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+#rules ul {
+  display: block;
+  text-align: left;
+  color: #E9A04D;
+}
+
+#rules h2 {
+  color: #E9A04D;
+}
+
+span {
+  font-family: 'Limelight', cursive;
+}
+
+h1, h2 {
+  font-family: 'Limelight', cursive;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#hangman {
+  font-size: 300%;
+}

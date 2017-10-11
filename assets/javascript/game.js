@@ -37,7 +37,7 @@ function updateDOM() {
   document.getElementById("guesses-remaining").innerHTML = incorrectGuesses;
   document.getElementById("number-wins").innerHTML = numberWins;
   document.getElementById("number-losses").innerHTML = numberLosses;
-  document.getElementById("guessed-letters").innerHTML = guessedLetters;
+  document.getElementById("guessed-letters").innerHTML = guessedLetters.split("").join(", ");
   document.getElementById("current-word").innerHTML = obfuscatedWord.split("").join(" ");
   document.getElementById("hangman").innerHTML = hangman.slice(0,incorrectGuesses);
 }

@@ -30,4 +30,4 @@ This is Trilogy Ed homework: hangman game.  It's an experiment written in vanill
 3.  enjoy!
 
 ## play it online right now
-http://htmlpreview.github.io/?https://github.com/marclevetin/hangman-game/blob/master/index.html
+https://marclevetin.github.io/hangman-game/
